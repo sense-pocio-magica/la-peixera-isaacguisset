@@ -6,10 +6,8 @@ public class Peix : Animal, IInteractuable
 {
     public int DirX { get; set; }
     public int DirY { get; set; }
-    public Peix() { } //ctor normal el que sutilitza a l'inici
-
     public Peix(int x, int y, int dx, int dy, char sexe)
-    {//aquest es fa servir per crear nous pexitus
+    {
         X = x;
         Y = y;
         DirX = dx;

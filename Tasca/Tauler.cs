@@ -7,7 +7,13 @@ public class Tauler
 
     public void Inicialitzar()
     {
-        // encara no he posat res pero ja ho fare
+        Random r = new Random();
+        //peixos
+        for (int i = 0; i < 50; i++)
+        {
+            Habitants.Add(new Peix(r.Next(Mida), r.Next(Mida), r.Next(-1, 2), r.Next(-1, 2), 'M'));
+            Habitants.Add(new Peix(r.Next(Mida), r.Next(Mida), r.Next(-1, 2), r.Next(-1, 2), 'F'));
+        }
     }
     public void FerForaElsMorts()
     {
