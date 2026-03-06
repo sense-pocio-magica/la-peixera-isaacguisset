@@ -6,6 +6,17 @@ public class Peix : Animal, IInteractuable
 {
     public int DirX { get; set; }
     public int DirY { get; set; }
+    public Peix() { } //ctor normal el que sutilitza a l'inici
+
+    public Peix(int x, int y, int dx, int dy, char sexe)
+    {//aquest es fa servir per crear nous pexitus
+        X = x;
+        Y = y;
+        DirX = dx;
+        DirY = dy;
+        Sexe = sexe;
+        Viu = true;
+    }
     public override void Moure(int filamax, int columnamax)
     {
         X = (X + DirX + filamax) % filamax;
@@ -13,7 +24,7 @@ public class Peix : Animal, IInteractuable
     }
     public void Interactuar(Animal altre, List<Animal> nousHabitants)
     {
-        if (altre is Peix )
+        if (altre is Peix)
         {
             if (this.Sexe != altre.Sexe)
             {
@@ -36,6 +47,7 @@ public class Peix : Animal, IInteractuable
                 }
                 else { nouSexe = 'M'; }
 
+                nousHabitants.Add(new Peix(this.X, this.Y, novaDirX, novaDirY, nouSexe));
 
             }
             else
