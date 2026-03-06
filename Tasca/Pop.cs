@@ -8,7 +8,7 @@ public class Pop : Animal, IInteractuable
     {
         if (sentit)
         {
-            if (X == 0 && Y < columnamax - 1) // mentres esta adalt i no arriba al costat de dreta es va moveent cap a la dreta
+            if (X == 0 && Y < columnamax - 1) // mentres esta a dalt i no arriba al costat de dreta es va movent cap a la dreta
             {
                 Y++;
             }
@@ -16,16 +16,16 @@ public class Pop : Animal, IInteractuable
             {
                 X++;
             }
-            else if (X == filamax - 1 && Y > 0) // quan esta abaix ja fins que no arriba a lesquerra es va movent
+            else if (X == filamax - 1 && Y > 0) // quan esta abaix ja fins que no arriba a l esquerra es va movent
             {
                 Y--;
             }
-            else if (Y == 0 && X > 0)//fins que no arriba adalt es va movent
+            else if (Y == 0 && X > 0)//fins que no arriba a dalt es va movent
             {
                 X--;
             }
         }
-        else // basicament lo mateix al reves
+        else // bàsicament lo mateix al revés
         {
             if (X == 0 && Y > 0)
             {
