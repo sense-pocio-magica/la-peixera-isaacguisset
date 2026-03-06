@@ -10,8 +10,8 @@ public class Tauler
         // encara no he posat res pero ja ho fare
     }
     public void FerForaElsMorts()
-{
-    Habitants.RemoveAll(a => !a.Viu);
-}
+    {
+        Habitants.RemoveAll(a => !a.Viu);
+    }
 
 }
