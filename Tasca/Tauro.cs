@@ -1,6 +1,6 @@
 namespace Tasca;
 
-public class Tauro : Animal, IInteractuable
+public class Tauro : Animal, IInteractuable,IDesplaçable
 {
     public int Vida { get; set; } = 75;
 

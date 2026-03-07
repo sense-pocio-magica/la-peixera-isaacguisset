@@ -1,6 +1,6 @@
 namespace Tasca;
 
-public class Tortuga : Animal, IInteractuable
+public class Tortuga : Animal, IInteractuable,IDesplaçable
 {
     
     public int DirX { get; set; }

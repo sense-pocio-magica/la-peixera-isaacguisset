@@ -1,6 +1,6 @@
 namespace Tasca;
 
-public class Peix : Animal, IInteractuable
+public class Peix : Animal, IInteractuable,IDesplaçable
 {
     public int DirX { get; set; }
     public int DirY { get; set; }
