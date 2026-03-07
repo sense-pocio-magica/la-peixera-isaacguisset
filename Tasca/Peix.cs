@@ -1,5 +1,3 @@
-using System.Net.Mail;
-
 namespace Tasca;
 
 public class Peix : Animal, IInteractuable
