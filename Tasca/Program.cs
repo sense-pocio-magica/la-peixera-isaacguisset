@@ -3,7 +3,15 @@
 internal class Program
 {
     static void Main(string[] args)
+{
+    Tauler t = new Tauler();
+    t.Inicialitzar();
+
+    for (int ronda = 0; ronda < 100; ronda++)
     {
-        Console.WriteLine("Hello, World!");
+        t.FerRonda();
     }
+
+    t.Finalitzar();
+}
 }
