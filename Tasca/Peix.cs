@@ -26,7 +26,7 @@ public class Peix : Animal, IInteractuable
         {
             if (this.Sexe != altre.Sexe)
             {
-                Random r = new Random();
+            
                 int novaDirX = 1;
                 int novaDirY = 1;
                 if (this.DirX != 0)
@@ -39,7 +39,7 @@ public class Peix : Animal, IInteractuable
                 }
 
                 char nouSexe;
-                if (r.Next(0, 2) == 0)
+                if (Aleat.Random.Next(0, 2) == 0)
                 {
                     nouSexe = 'F';
                 }
