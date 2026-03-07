@@ -20,39 +20,34 @@ public class Peix : Animal, IInteractuable
         X = (X + DirX + filamax) % filamax;
         Y = (Y + DirY + columnamax) % columnamax;
     }
-    public void Interactuar(Animal altre, List<Animal> nousHabitants)
+public void Interactuar(Animal altre, List<Animal> nousHabitants)
+{
+    if (altre is Peix p)
+
+
     {
-        if (altre is Peix)
+        if (this.Sexe != p.Sexe)//es reprodueixen
         {
-            if (this.Sexe != altre.Sexe)
+            int novaDirX = 1;
+            int novaDirY = 1;
+            if (this.DirX != 0)
             {
-            
-                int novaDirX = 1;
-                int novaDirY = 1;
-                if (this.DirX != 0)
-                {
-                    novaDirX = -this.DirX;
-                }
-                if (this.DirY != 0)
-                {
-                    novaDirY = -this.DirY;
-                }
-
-                char nouSexe;
-                if (Aleat.Random.Next(0, 2) == 0)
-                {
-                    nouSexe = 'F';
-                }
-                else { nouSexe = 'M'; }
-
-                nousHabitants.Add(new Peix(this.X, this.Y, novaDirX, novaDirY, nouSexe));
-
+                novaDirX = -this.DirX;
             }
-            else
+            if (this.DirY != 0)
             {
-                this.Viu = false;
-                altre.Viu = false;
+                novaDirY = -this.DirY;
             }
+
+            char nouSexe = Aleat.Random.Next(2) == 0 ? 'F' : 'M';
+
+            nousHabitants.Add(new Peix(this.X, this.Y, novaDirX, novaDirY, nouSexe));
+        }
+        else//es maten entre ells o entre elles :/
+        {
+            this.Viu = false;
+            p.Viu = false;
         }
     }
+}
 }
