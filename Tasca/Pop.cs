@@ -48,7 +48,6 @@ public class Pop : Animal, IInteractuable
 
     public void Interactuar(Animal altre, List<Animal> nousHabitants)
     {
-        // si troben un altre pop van cap al sentit que no sigui el d ara
         if (altre is Pop)
         {
             this.sentit = !this.sentit;

@@ -33,5 +33,59 @@ public class Tauler
     {
         Habitants.RemoveAll(a => !a.Viu);
     }
+    public void FerRonda()
+    {
+        foreach (var a in Habitants)
+        {
+            if (a.Viu)
+                a.Moure(Mida, Mida);
+        }
+
+        ResoldreInteraccions();
+
+        FerForaElsMorts();
+    }
+    public void ResoldreInteraccions()
+    {
+        Casella[,] graella = new Casella[Mida, Mida];
+
+        for (int i = 0; i < Mida; i++)
+        {
+            for (int j = 0; j < Mida; j++)
+            {
+                graella[i, j] = new Casella();
+            }
+        }
+
+        foreach (var a in Habitants)
+        {
+            if (a.Viu)
+            {
+                graella[a.X, a.Y].Habitants.Add(a);
+            }
+        }
+
+        for (int i = 0; i < Mida; i++)
+        {
+            for (int j = 0; j < Mida; j++)
+            {
+                graella[i, j].ResoldreXocada();
+                Habitants.AddRange(graella[i, j].Habitants.Where(a => !Habitants.Contains(a)));
+                //utilitzo addrange per no haver de fer un llista.add cada vegada
+            }
+        }
+    }
+    public void Finalitzar()
+    {
+        int peixos = Habitants.Count(a => a is Peix && a.Viu);
+        int pops = Habitants.Count(a => a is Pop && a.Viu);
+        int taurons = Habitants.Count(a => a is Tauro && a.Viu);
+        int tortugues = Habitants.Count(a => a is Tortuga && a.Viu);
+
+        Console.WriteLine($"Peixos: {peixos}");
+        Console.WriteLine($"Pops: {pops}");
+        Console.WriteLine($"Taurons: {taurons}");
+        Console.WriteLine($"Tortugues: {tortugues}");
+    }
 
 }
