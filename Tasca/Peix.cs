@@ -43,8 +43,8 @@ public void Interactuar(Animal altre, List<Animal> nousHabitants)
         }
         else//es maten entre ells o entre elles :/
         {
-            this.Viu = false;
-            p.Viu = false;
+                this.Morir();
+                p.Morir();
         }
     }
 }
