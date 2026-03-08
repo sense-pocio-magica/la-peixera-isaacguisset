@@ -1,6 +1,6 @@
 namespace Tasca;
 
-public class Peix : Animal, IInteractuable, IDesplaçable, IReproducible
+public class Peix : Animal, IInteractuable, IReproducible
 {
     public int DirX { get; set; }
     public int DirY { get; set; }
@@ -21,8 +21,6 @@ public class Peix : Animal, IInteractuable, IDesplaçable, IReproducible
     public void Interactuar(Animal altre, List<Animal> nousHabitants)
     {
         if (altre is Peix p)
-
-
         {
             if (this.Sexe != p.Sexe)//es reprodueixen
             {

@@ -1,6 +1,6 @@
 namespace Tasca;
 
-public class Pop : Animal, IInteractuable,IDesplaçable
+public class Pop : Animal, IInteractuable
 {
     private bool sentit = true;  // si es true es cap a la dreta i si es false cap a lesquerra
 
