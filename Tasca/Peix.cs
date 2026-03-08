@@ -1,6 +1,6 @@
 namespace Tasca;
 
-public class Peix : Animal, IInteractuable,IDesplaçable,IReproducible
+public class Peix : Animal, IInteractuable, IDesplaçable, IReproducible
 {
     public int DirX { get; set; }
     public int DirY { get; set; }
@@ -27,7 +27,11 @@ public class Peix : Animal, IInteractuable,IDesplaçable,IReproducible
             if (this.Sexe != p.Sexe)//es reprodueixen
             {
 
-                nousHabitants.Add(Reproduir(this));
+                var elQueNeix = Reproduir(altre);
+                if (elQueNeix != null)
+                {
+                    nousHabitants.Add(elQueNeix);
+                }
             }
             else//es maten entre ells o entre elles :/
             {
@@ -36,7 +40,7 @@ public class Peix : Animal, IInteractuable,IDesplaçable,IReproducible
             }
         }
     }
- public Animal Reproduir(Animal altre)
+    public Animal Reproduir(Animal altre)
     {
         if (altre is Peix p && this.Sexe != p.Sexe)
         {
