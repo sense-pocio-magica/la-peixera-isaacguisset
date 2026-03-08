@@ -29,10 +29,17 @@ public class Tauro : Animal, IInteractuable, IReproducible
                     nousHabitants.Add(elQueNeix);
                 }
             }
-            else//es maten entre ells o entre elles :/
+            else if (this.Sexe == altre.Sexe)//es maten entre ells o entre elles :/
             {
                 this.Morir();
                 t.Morir();
+            }
+            else if (altre is Tortuga)
+            {
+                //canviar dir
+                DirX = -DirX;
+                DirY = -DirY;
+
             }
         }
     }
