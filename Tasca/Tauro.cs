@@ -2,14 +2,15 @@ namespace Tasca;
 
 public class Tauro : Animal, IInteractuable, IReproducible
 {
-    public int Vida { get; set; } = 75;
+    public int Vida { get; set; } = 75;//n de rondes per cada moure li resta 1
     public int DirX { get; set; } = 1;
     public int DirY { get; set; } = 0;
     public override void Moure(int filamax, int columnamax)
     {
-        X = (X + 1 + filamax) % filamax;
-        Vida--;
-        if (Vida <= 0) Viu = false;
+        X = (X + DirX + filamax) % filamax;
+        Y = (Y + DirY + columnamax) % columnamax;
+
+        Vida--; if (Vida <= 0)Viu = false;
     }
 
     public void Interactuar(Animal altre, List<Animal> nousHabitants)
