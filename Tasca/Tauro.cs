@@ -10,14 +10,14 @@ public class Tauro : Animal, IInteractuable, IReproducible
         X = (X + DirX + filamax) % filamax;
         Y = (Y + DirY + columnamax) % columnamax;
 
-        Vida--; if (Vida <= 0)Viu = false;
+        Vida--; if (Vida <= 0) Viu = false;
     }
 
     public void Interactuar(Animal altre, List<Animal> nousHabitants)
     {
-        if (altre is Peix)
+        if (altre is Peix || altre is Pop)
         {
-            altre.Viu = false;
+            altre.Morir();
         }
         else if (altre is Tauro t)
         {
