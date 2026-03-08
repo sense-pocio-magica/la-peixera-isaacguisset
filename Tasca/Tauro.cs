@@ -34,13 +34,14 @@ public class Tauro : Animal, IInteractuable, IReproducible
                 this.Morir();
                 t.Morir();
             }
-            else if (altre is Tortuga)
-            {
-                //canviar dir
-                DirX = -DirX;
-                DirY = -DirY;
 
-            }
+        }
+        else if (altre is Tortuga)
+        {
+            //canviar dir
+            DirX = -DirX;
+            DirY = -DirY;
+
         }
     }
     public Animal Reproduir(Animal altre)
