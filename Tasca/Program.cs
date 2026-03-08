@@ -4,6 +4,7 @@ internal class Program
 {
     static void Main(string[] args)
 {
+    //es similar al que vam fer amb el de la vida regalada
     Tauler t = new Tauler();
     t.Inicialitzar();
 
@@ -11,7 +12,6 @@ internal class Program
     {
         t.FerRonda();
     }
-
     t.Finalitzar();
 }
 }

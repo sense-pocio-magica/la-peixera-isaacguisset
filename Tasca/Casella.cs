@@ -15,8 +15,11 @@ public class Casella
             {
                 if (Habitants[i].Viu && Habitants[j].Viu)
                 {
-                    if (Habitants[i] is IInteractuable inter)
-                        inter.Interactuar(Habitants[j], nous);
+                    if (Habitants[i] is IInteractuable inter1)
+                        inter1.Interactuar(Habitants[j], nous);
+
+                    if (Habitants[j] is IInteractuable inter2)
+                        inter2.Interactuar(Habitants[i], nous);
                 }
             }
         }
