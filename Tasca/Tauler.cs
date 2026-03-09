@@ -24,6 +24,7 @@ public class Tauler
         }
 
 
+
         Tortuga CrearTortuga(char sexe)
         {
             var (dx, dy) = DirAleat();
