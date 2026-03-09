@@ -3,15 +3,18 @@
 internal class Program
 {
     static void Main(string[] args)
-{
-    //es similar al que vam fer amb el de la vida regalada
-    Tauler t = new Tauler();
-    t.Inicialitzar();
-
-    for (int ronda = 0; ronda < 100; ronda++)
     {
-        t.FerRonda();
+        //es similar al que vam fer amb el de la vida regalada
+        Tauler t = new Tauler();
+        t.Inicialitzar();
+
+        for (int ronda = 0; ronda < 100; ronda++)
+        {
+            Console.WriteLine($"INICI DE LA RONDA {ronda + 1}");
+
+            t.FerRonda();
+            Console.WriteLine("-----------------------------------------------------------");
+        }
+        t.Finalitzar();
     }
-    t.Finalitzar();
-}
 }

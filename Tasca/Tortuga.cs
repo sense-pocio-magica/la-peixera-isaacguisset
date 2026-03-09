@@ -21,12 +21,17 @@ public class Tortuga : Animal, IInteractuable, IReproducible
         {
             this.Viu = false;
             altre.Viu = false;
+            Console.WriteLine($"Dues tortugues del mateix sexe es troben i es maten");
         }
         else if (altre is Tortuga && this.Sexe != altre.Sexe)
         {
             var nou = Reproduir(altre);
             if (nou != null)
+            {
                 nousHabitants.Add(nou);
+                Console.WriteLine($"Dues tortugues de diferent sexe es troben i copulen generant una tortugueta mini");
+            }
+
         }
     }
     public Animal Reproduir(Animal altre)

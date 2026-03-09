@@ -4,27 +4,28 @@ public class Casella
 {
     public List<Animal> Habitants { get; set; } = new List<Animal>();
 
-    public void ResoldreXocada()
+    public List<Animal> ResoldreXocada()
     {
-        if (Habitants.Count < 2) return;
+        var nous = new List<Animal>();
 
-        List<Animal> nous = new List<Animal>();
+        var vius = Habitants.Where(a => a.Viu).ToList();
+        if (vius.Count < 2)
+            return nous;
 
-        for (int i = 0; i < Habitants.Count - 1; i++)
+        for (int i = 0; i < vius.Count; i++)
         {
-      for (int j = i + 1; j < Habitants.Count; j++)
+            var a1 = vius[i];
+            if (a1 is not IInteractuable interactor)
+                continue;
+            for (int j = i + 1; j < vius.Count; j++)
             {
-                  if (Habitants[i].Viu && Habitants[j].Viu)
-                {
-                    if (Habitants[i] is IInteractuable inter1)
-                        inter1.Interactuar(Habitants[j], nous);
+                var a2 = vius[j];
 
-                if (Habitants[j].Viu && Habitants[j] is IInteractuable inter2)
-                        inter2.Interactuar(Habitants[i], nous);
-                }
+                if (!a2.Viu)
+                    continue;
+                interactor.Interactuar(a2, nous);
             }
         }
-        Habitants.AddRange(nous);
+        return nous;
     }
-
 }

@@ -15,9 +15,15 @@ public class Tauro : Animal, IInteractuable, IReproducible
 
     public void Interactuar(Animal altre, List<Animal> nousHabitants)
     {
-        if (altre is Peix || altre is Pop)
+        if (altre is Peix)
         {
             altre.Morir();
+            Console.WriteLine("Un tauró mata a un Peix");
+        }
+        else if (altre is Pop)
+        {
+            altre.Morir();
+            Console.WriteLine("Un tauro mata a un Pop");
         }
         else if (altre is Tauro t)
         {
@@ -28,12 +34,15 @@ public class Tauro : Animal, IInteractuable, IReproducible
                 if (elQueNeix != null)
                 {
                     nousHabitants.Add(elQueNeix);
+                    Console.WriteLine($"Dos taurons de diferent sexe es troben i copulen generant un mini tauronet");
                 }
             }
             else if (this.Sexe == altre.Sexe)//es maten entre ells o entre elles :/
             {
                 this.Morir();
                 t.Morir();
+                Console.WriteLine("Dos taurons de mateix sexe es troben i es maten ");
+
             }
 
         }

@@ -5,29 +5,86 @@ public class Tauler
     public List<Animal> Habitants { get; set; } = new List<Animal>();
     public int Mida { get; set; } = 20;
 
-    public void Inicialitzar()
+   public void Inicialitzar()
+{
+    int DireccioAleatoria()
     {
-        //peixos
-        for (int i = 0; i < 50; i++)
+        int d;
+        do
         {
-            Habitants.Add(new Peix(Aleat.Random.Next(Mida), Aleat.Random.Next(Mida), Aleat.Random.Next(-1, 2), Aleat.Random.Next(-1, 2), 'M'));
-            Habitants.Add(new Peix(Aleat.Random.Next(Mida), Aleat.Random.Next(Mida), Aleat.Random.Next(-1, 2), Aleat.Random.Next(-1, 2), 'F'));
-        }
-        for (int i = 0; i < 15; i++)
-        {
-            Habitants.Add(new Pop { X = 0, Y = Aleat.Random.Next(Mida) });
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            Habitants.Add(new Tauro { X = Aleat.Random.Next(Mida), Y = Aleat.Random.Next(Mida), Sexe = 'M' });
-            Habitants.Add(new Tauro { X = Aleat.Random.Next(Mida), Y = Aleat.Random.Next(Mida), Sexe = 'F' });
-        }
-        for (int i = 0; i < 6; i++)
-        {
-            Habitants.Add(new Tortuga { X = Aleat.Random.Next(Mida), Y = Aleat.Random.Next(Mida), Sexe = 'M', DirX = 1, DirY = 0 });
-            Habitants.Add(new Tortuga { X = Aleat.Random.Next(Mida), Y = Aleat.Random.Next(Mida), Sexe = 'F', DirX = 0, DirY = 1 });
-        }
+            d = Aleat.Random.Next(-1, 2);
+        } while (d == 0); 
+        return d;
     }
+
+    Peix CrearPeix(char sexe)
+    {
+        int dx, dy;
+        do
+        {
+            dx = Aleat.Random.Next(-1, 2);
+            dy = Aleat.Random.Next(-1, 2);
+        } while (dx == 0 && dy == 0); 
+        return new Peix(Aleat.Random.Next(Mida), Aleat.Random.Next(Mida), dx, dy, sexe);
+    }
+
+    Tortuga CrearTortuga(char sexe)
+    {
+        int dx, dy;
+        do
+        {
+            dx = Aleat.Random.Next(-1, 2);
+            dy = Aleat.Random.Next(-1, 2);
+        } while (dx == 0 && dy == 0);
+        return new Tortuga
+        {
+            X = Aleat.Random.Next(Mida),
+            Y = Aleat.Random.Next(Mida),
+            Sexe = sexe,
+            DirX = dx,
+            DirY = dy
+        };
+    }
+
+    Tauro CrearTauro(char sexe)
+    {
+        int dx, dy;
+        do
+        {
+            dx = Aleat.Random.Next(-1, 2);
+            dy = Aleat.Random.Next(-1, 2);
+        } while (dx == 0 && dy == 0);
+        return new Tauro
+        {
+            X = Aleat.Random.Next(Mida),
+            Y = Aleat.Random.Next(Mida),
+            Sexe = sexe,
+            DirX = dx,
+            DirY = dy
+        };
+    }
+
+    for (int i = 0; i < 50; i++)
+    {
+        Habitants.Add(CrearPeix('M'));
+        Habitants.Add(CrearPeix('F'));
+    }
+
+    for (int i = 0; i < 15; i++)
+        Habitants.Add(new Pop { X = 0, Y = Aleat.Random.Next(Mida) });
+
+    for (int i = 0; i < 10; i++)
+    {
+        Habitants.Add(CrearTauro('M'));
+        Habitants.Add(CrearTauro('F'));
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        Habitants.Add(CrearTortuga('M'));
+        Habitants.Add(CrearTortuga('F'));
+    }
+}
     public void FerForaElsMorts()
     {
         Habitants.RemoveAll(a => !a.Viu);
@@ -35,10 +92,8 @@ public class Tauler
     public void FerRonda()
     {
         foreach (var a in Habitants)
-        {
             if (a.Viu)
                 a.Moure(Mida, Mida);
-        }
 
         ResoldreInteraccions();
 
@@ -47,32 +102,29 @@ public class Tauler
     public void ResoldreInteraccions()
     {
         Casella[,] graella = new Casella[Mida, Mida];
-
         for (int i = 0; i < Mida; i++)
-        {
             for (int j = 0; j < Mida; j++)
-            {
                 graella[i, j] = new Casella();
-            }
-        }
 
-        foreach (var a in Habitants)
-        {
-            if (a.Viu)
-            {
-                graella[a.X, a.Y].Habitants.Add(a);
-            }
-        }
+        foreach (var a in Habitants.Where(a => a.Viu))
+            graella[a.X, a.Y].Habitants.Add(a);
+
+        List<Animal> nousHabitants = new List<Animal>();
 
         for (int i = 0; i < Mida; i++)
         {
             for (int j = 0; j < Mida; j++)
             {
-                graella[i, j].ResoldreXocada();
-                Habitants.AddRange(graella[i, j].Habitants.Where(a => !Habitants.Contains(a)));
-                //utilitzo addrange per no haver de fer un llista.add cada vegada
+                var nous = graella[i, j].ResoldreXocada();
+                foreach (var n in nous)
+                    if (n.Viu && !Habitants.Contains(n) && !nousHabitants.Contains(n))
+                        nousHabitants.Add(n);
             }
         }
+
+        Habitants.AddRange(nousHabitants);
+
+        FerForaElsMorts();
     }
     public void Finalitzar()
     {
@@ -86,5 +138,4 @@ public class Tauler
         Console.WriteLine($"Taurons: {taurons}");
         Console.WriteLine($"Tortugues: {tortugues}");
     }
-
 }

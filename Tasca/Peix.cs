@@ -29,12 +29,16 @@ public class Peix : Animal, IInteractuable, IReproducible
                 if (elQueNeix != null)
                 {
                     nousHabitants.Add(elQueNeix);
+                    Console.WriteLine($"Dos peixos de diferent sexe es troben i copulen generant un peixet mini");
+
                 }
             }
             else//es maten entre ells o entre elles :/
             {
                 this.Morir();
                 p.Morir();
+                Console.WriteLine($"Dos peixos de mateix sexe es troben i es maten");
+
             }
         }
     }

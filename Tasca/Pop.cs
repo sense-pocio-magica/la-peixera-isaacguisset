@@ -50,6 +50,7 @@ public class Pop : Animal, IInteractuable
     {
         if (altre is Pop)
         {
+            Console.WriteLine($"Un pop canvia de sentit al trobar-se amb un altre pop");
             this.sentit = !this.sentit;
         }
     }
