@@ -73,6 +73,6 @@ public class Tauro : Animal, IInteractuable, IReproducible
                 Vida = 75
             };
         }
-        return null;
+        return null!;
     }
 }

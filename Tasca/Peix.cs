@@ -53,6 +53,6 @@ public class Peix : Animal, IInteractuable, IReproducible
 
             return new Peix(this.X, this.Y, novaDirX, novaDirY, nouSexe);
         }
-        return null;
+        return null!;
     }
 }
