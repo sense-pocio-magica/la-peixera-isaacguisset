@@ -4,57 +4,38 @@ public class Tauler
 {
     public List<Animal> Habitants { get; set; } = new List<Animal>();
     public int Mida { get; set; } = 20;
-    public string LogsDelPrograma { get; set; } = null!;
-
-   public void Inicialitzar()
+    public (int, int) DirAleat() // utilitzo tuples
     {
+        int dx, dy;
+        do
+        {
+            dx = Aleat.Random.Next(-1, 2);
+            dy = Aleat.Random.Next(-1, 2);
+        } while (dx == 0 && dy == 0);//evitar que sigui 0,0
 
+        return (dx, dy);
+    }
+    public void Inicialitzar()
+    {
         Peix CrearPeix(char sexe)
         {
-            int dx, dy;
-            do
-            {
-                dx = Aleat.Random.Next(-1, 2);
-                dy = Aleat.Random.Next(-1, 2);
-            } while (dx == 0 && dy == 0);
+            var (dx, dy) = DirAleat();//perr no repetirme --> dry
             return new Peix(Aleat.Random.Next(Mida), Aleat.Random.Next(Mida), dx, dy, sexe);
         }
 
+
         Tortuga CrearTortuga(char sexe)
         {
-            int dx, dy;
-            do
-            {
-                dx = Aleat.Random.Next(-1, 2);
-                dy = Aleat.Random.Next(-1, 2);
-            } while (dx == 0 && dy == 0);
-            return new Tortuga
-            {
-                X = Aleat.Random.Next(Mida),
-                Y = Aleat.Random.Next(Mida),
-                Sexe = sexe,
-                DirX = dx,
-                DirY = dy
-            };
+            var (dx, dy) = DirAleat();
+            return new Tortuga { X = Aleat.Random.Next(Mida), Y = Aleat.Random.Next(Mida), Sexe = sexe, DirX = dx, DirY = dy };
         }
 
         Tauro CrearTauro(char sexe)
         {
-            int dx, dy;
-            do
-            {
-                dx = Aleat.Random.Next(-1, 2);
-                dy = Aleat.Random.Next(-1, 2);
-            } while (dx == 0 && dy == 0);
-            return new Tauro
-            {
-                X = Aleat.Random.Next(Mida),
-                Y = Aleat.Random.Next(Mida),
-                Sexe = sexe,
-                DirX = dx,
-                DirY = dy
-            };
+            var (dx, dy) = DirAleat();
+            return new Tauro { X = Aleat.Random.Next(Mida), Y = Aleat.Random.Next(Mida), Sexe = sexe, DirX = dx, DirY = dy };
         }
+
 
         for (int i = 0; i < 50; i++)
         {
@@ -77,7 +58,7 @@ public class Tauler
             Habitants.Add(CrearTortuga('F'));
         }
     }
-    public void FerForaElsMorts()
+    public void FerForaElsMorts()//ns si els hauria de treure de la llista en el moment de matar-los...
     {
         Habitants.RemoveAll(a => !a.Viu);
     }
@@ -99,7 +80,9 @@ public class Tauler
                 graella[i, j] = new Casella();
 
         foreach (var a in Habitants.Where(a => a.Viu))
+        {
             graella[a.X, a.Y].Habitants.Add(a);
+        }
 
         List<Animal> nousHabitants = new List<Animal>();
 
@@ -109,8 +92,11 @@ public class Tauler
             {
                 var nous = graella[i, j].ResoldreXocada();
                 foreach (var n in nous)
+                {
                     if (n.Viu && !Habitants.Contains(n) && !nousHabitants.Contains(n))
                         nousHabitants.Add(n);
+                }
+
             }
         }
 
@@ -119,6 +105,7 @@ public class Tauler
         FerForaElsMorts();
     }
     public void Finalitzar()
+    //reconte final
     {
         int peixos = Habitants.Count(a => a is Peix && a.Viu);
         int pops = Habitants.Count(a => a is Pop && a.Viu);

@@ -4,7 +4,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        //es similar al que vam fer amb el de la vida regalada
+        //es similar al que vam fer amb el de la vida regalada en quan a tauler i caselles
         Tauler t = new Tauler();
         t.Inicialitzar();
 

@@ -8,19 +8,19 @@ public class Pop : Animal, IInteractuable
     {
         if (sentit)
         {
-            if (X == 0 && Y < columnamax - 1) // mentres esta a dalt i no arriba al costat de dreta es va movent cap a la dreta
+            if (X == 0 && Y < columnamax - 1) 
             {
                 Y++;
             }
-            else if (Y == columnamax - 1 && X < filamax - 1) //quan hi arriba baixa
+            else if (Y == columnamax - 1 && X < filamax - 1) 
             {
                 X++;
             }
-            else if (X == filamax - 1 && Y > 0) // quan esta abaix ja fins que no arriba a l esquerra es va movent
+            else if (X == filamax - 1 && Y > 0) 
             {
                 Y--;
             }
-            else if (Y == 0 && X > 0)//fins que no arriba a dalt es va movent
+            else if (Y == 0 && X > 0)
             {
                 X--;
             }
@@ -50,7 +50,7 @@ public class Pop : Animal, IInteractuable
     {
         if (altre is Pop)
         {
-            Console.WriteLine($"Un pop canvia de sentit al trobar-se amb un altre pop");
+            Console.WriteLine($"Un pop canvia de sentit al trobar-se amb un altre pop"); 
             this.sentit = !this.sentit;
         }
     }
